@@ -22,6 +22,5 @@ from factura import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hola/', views.hola),
-    path('cliente/', views.cliente)
+    path('', views.cliente),
 ]

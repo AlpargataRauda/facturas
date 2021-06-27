@@ -1,41 +1,57 @@
 <!DOCTYPE html>
 <html>
  <head>
-   <p> Página de facturas </p>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/pagina_principal.css' %}">
+   <h1><a href="">Página de facturas</a></h1>
  </head>
- <body>
-  <p>Cliente</p>
-  <p> {{ fc.cliente_nombre }} </p>
- </body>
- <body>
-  <p>Número de factura</p>
-  <p> {{ fc.numero }} </p>
- </body>
- <body>
-  <p>Año de emisión</p>
-  <p> {{ fc.anio }} </p>
- </body>
- <body>
-  <p>Fecha de emisión</p>
-  <p> {{ fc.fecha_emision }} </p>
- </body>
   <body>
-  <p>Dirección del cliente</p>
-  <p> {{ fc.cliente_direccion }} </p>
- </body>
-</html>
-  <body>
-  <p>Dirección del cliente</p>
-  <p> {{ lf.nombre_producto }} </p>
- </body>
-</html>
-  <body>
-  <p>Dirección del cliente</p>
-  <p> {{ lf.precio_unitario }} </p>
- </body>
-</html>
-  <body>
-  <p>Dirección del cliente</p>
-  <p> {{ lf.unidades }} </p>
- </body>
+  <h2> lista de facturas </h2>
+  <table class='table'>
+  <tr>
+  <th>Identificador de la factura</th>
+  <th>Nombre del cliente</th>
+  <th>Fecha de emisión </th>
+  </tr>
+      {% for f in fc%} <tr>
+  <td> <a href="detalle/<int:id>/">{{f.numero }}/{{ f.year }} </a></td>
+  <td> {{ f.cliente_nombre }} </td>
+  <td> {{ f.fecha }} </td>
+     </tr> {% endfor %}
+     </table>
+       <table class='table'> 
+  <tr>
+  <td><h4>Propietario</h4></td>
+  <td><h4>Productos</h4></td>
+  <td><h4> Precio (€) </h4></td>
+  <td><h4> Unidades compradas </h4></td>
+  <td><h4> Precio de compra (€) </h4></td>
+  <td><h4> Precio con iva (€) </h4></td>
+  </tr>
+  <p> {% for l in fac %} </p>
+      <tr>
+      <td>{{ l.propietario }} </td>
+      <td>{{ l.nombre_producto }}</td>
+      <td>{{ l.precio_unitario }}</td>
+      <td>{{ l.unidades }}</td>
+      <td>{{ l.precio_compra }} </td>
+      <td>{{ l.total_iva}} </td>
+      </tr>
+   {% endfor %}
+   </table>
+   <table class='table'>
+   <p> {% for l in fc %} </p>
+   <tr> 
+   <td>Propietario</td>
+   <td>Precio total con IVA €</td> 
+   </tr>
+   <tr>
+   <td> {{l.cliente_nombre}} </td>
+   <td> {{l.total_mas_iva }} <td>
+   </tr>
+   {% endfor %}
+   </table>
+   </body>
 </html>
